@@ -12,6 +12,6 @@ def create
   customer = Payjp::Customer.create(card:payjp_token)
   plan = Payjp::Plan.create(id: "normal", amount: "500", interval: "month", currency: "jpy")
   # 管理画面でプランを作成して直接plan_idを記入するのも可能です
-  subscription = Payjp::Subscription.create(customer:customer.id, plan: plan.id) # 定期購読
+  subscription = Payjp::Subscription.create(customer:customer.id, plan: plan.id) # 定期課金
 end
 ```
