@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>plan:</strong>
+  <%= @order.plan %>
+</p>
+
+<p>
+  <strong>customer:</strong>
+  <%= @order.customer %>
+</p>
+
+<p>
+  <strong>item:</strong>
+  <%= @order.item.try(:name) %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

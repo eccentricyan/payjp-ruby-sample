@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+<%= form_tag({ controller: :orders, action: :create}) do %>
+  <script src="https://checkout.pay.jp/" class="payjp-button" data-key="pk_test_0383a1b8f91e8a6e3ea0e2a9"></script>
+  <%= hidden_field :item, :id %>
+<% end %>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
