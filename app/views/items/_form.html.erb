@@ -21,6 +21,11 @@
     <%= form.number_field :price, id: :item_price %>
   </div>
 
+  <div class="field">
+    <%= form.label :interval %>
+    <%= select :item, :interval, {"毎月" => :month, "毎年" => :year} %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

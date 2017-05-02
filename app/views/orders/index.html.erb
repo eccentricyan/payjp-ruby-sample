@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>plan</th>
-      <th>customer</th>
       <th>item</th>
+      <th>user</th>
+      <th>subscription</th>
+      <th>current_period_end</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +16,10 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.plan %></td>
-        <td><%= order.customer %></td>
-        <td><%= order.item.name %></td>
+        <td><%= order.item.try(:name) %></td>
+        <td><%= order.user.try(:name) %></td>
+        <td><%= order.subscription %></td>
+        <td><%= order.current_period_end %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -28,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<%= link_to 'New Order', new_item_order_path(@item) %>

@@ -1,12 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <strong>plan:</strong>
-  <%= @order.plan %>
-</p>
-
-<p>
-  <strong>customer:</strong>
-  <%= @order.customer %>
+  <strong>user:</strong>
+  <%= @order.user.name %>
 </p>
 
 <p>
@@ -14,5 +9,15 @@
   <%= @order.item.try(:name) %>
 </p>
 
+<p>
+  <strong>subscription:</strong>
+  <%= @order.subscription %>
+</p>
+
+<p>
+  <strong>current_period_end:</strong>
+  <%= @order.current_period_end %>
+</p>
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Back', item_orders_path(@order.item) %>

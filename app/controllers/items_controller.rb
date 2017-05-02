@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @user = user
   end
 
   # GET /items/new
@@ -69,6 +70,14 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :price)
+      params.require(:item).permit(:name, :price, :interval)
+    end
+
+    def user
+      user = User.first
+      unless user
+        user = User.create(name: "payjp_user")
+      end
+      user
     end
 end

@@ -1,6 +1,7 @@
 class Order
   include Mongoid::Document
-  field :plan, type: String
-  field :customer, type: String
-  has_one :item
+  field :subscription, type: String
+  field :current_period_end, type: DateTime
+  belongs_to :item
+  belongs_to :user
 end

@@ -9,9 +9,27 @@
   <strong>Price:</strong>
   <%= @item.price %>
 </p>
-<%= form_tag({ controller: :orders, action: :create}) do %>
-  <script src="https://checkout.pay.jp/" class="payjp-button" data-key="pk_test_0383a1b8f91e8a6e3ea0e2a9"></script>
-  <%= hidden_field :item, :id %>
+
+<p>
+  <strong>定期便:</strong>
+  <%= @item.interval %>
+</p>
+<% if @user.role.include?("#{@item.interval}_subscribed") %>
+  <% @order = Order.where(item: @item, user: @user).first %>
+  <% if @order %>
+    <%= form_for(@order, url: order_path(@order)) do |f| %>
+      <%= f.hidden_field :status, :value => "cancel" %>
+      <%= f.submit "購読をキャンセル" %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= form_for(Order.new, url: item_orders_path(@item)) do |f| %>
+    <% if @user.customer_id %>
+    <%= f.submit "購読する" %>
+    <% else %>
+    <script src="https://checkout.pay.jp/" class="payjp-button" data-key="pk_test_0383a1b8f91e8a6e3ea0e2a9"></script>
+    <% end %>
+  <% end %>
 <% end %>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
