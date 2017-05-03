@@ -12,7 +12,5 @@ namespace :admin do
         user.save!
       end
     end
-    customer = user.customer_id
-    #CACHE.flush
   end
 end
